@@ -137,3 +137,11 @@ class QuadTree:
                 return_objects.extend(objects)
 
         return return_objects
+
+    def clear(self):
+        self.objects = []
+
+        for v in self.quadrants:
+            v.clear()
+
+        self.quadrants = []
