@@ -103,7 +103,7 @@ class QuadTree:
         return indexes
 
     def insert(self, p_rect):
-        if len(self.quadrants):
+        if self.quadrants:
             indexes = self.getIndex(p_rect)
 
             for k in indexes:
@@ -116,7 +116,7 @@ class QuadTree:
         if len(self.objects) <= self.max_objects or self.level > self.max_levels:
             return
 
-        if not len(self.quadrants):
+        if not self.quadrants:
             self.split()
 
         for v in self.objects:
@@ -129,9 +129,9 @@ class QuadTree:
 
     def retrieve(self, p_rect):
         indexes = self.getIndex(p_rect)
-        return_objects = self.objects
+        return_objects = list(self.objects)
 
-        if len(self.quadrants):
+        if self.quadrants:
             for v in indexes:
                 objects = self.quadrants[v].retrieve(p_rect)
                 return_objects.extend(objects)
