@@ -128,7 +128,12 @@ class QuadTree:
         self.objects = []
 
     def retrieve(self, p_rect):
-      indexes = self.getIndex(p_rect)
-      return_objects = self.objects
+        indexes = self.getIndex(p_rect)
+        return_objects = self.objects
 
-      print(indexes, return_objects)
+        if len(self.quadrants):
+            for v in indexes:
+                objects = self.quadrants[v].retrieve(p_rect)
+                return_objects.extend(objects)
+
+        return return_objects

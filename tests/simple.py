@@ -26,7 +26,6 @@ def handler_add_object(rect=None):
             "y": rand_min_max(0, my_tree.bounds["height"] - 32),
             "width": rand_min_max(4, 32, True),
             "height": rand_min_max(4, 32, True),
-            "check": False,
         }
 
     my_tree.insert(rect)
@@ -38,5 +37,8 @@ handler_add_object()
 handler_add_object()
 handler_add_object()
 
-my_tree.retrieve({'x': 442.67247944659135, 'y': 11.251336922147196, 'width': 6, 'height': 10})
-# print(my_tree.max_levels, rand_min_max(10, 20))
+list = my_tree.retrieve(
+    {"x": 442.67247944659135, "y": 11.251336922147196, "width": 6, "height": 10}
+)
+
+print(list)
