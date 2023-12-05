@@ -1,5 +1,6 @@
 import sys
 import os
+from typing import Dict, Union
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -19,7 +20,7 @@ my_cursor = {
 }
 
 
-def handler_add_object(rect=None):
+def handler_add_object(rect: Union[None, Dict[str, Union[int, float]]] = None):
     if not rect:
         rect = {
             "x": rand_min_max(0, my_tree.bounds["width"] - 32),

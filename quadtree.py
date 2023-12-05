@@ -1,7 +1,18 @@
+from typing import List, Dict, Union
+
+Rect = Dict[str, Union[int, float]]
+
+
 class QuadTree:
-    def __init__(self, bounds, max_objects=None, max_levels=None, level=None):
-        self.max_objects = max_objects or 10
-        self.max_levels = max_levels or 4
+    def __init__(
+        self,
+        bounds: Rect,
+        max_objects: int = None,
+        max_levels: int = 10,
+        level: int = 4,
+    ):
+        self.max_objects = max_objects
+        self.max_levels = max_levels
 
         self.bounds = bounds
         self.level = level or 0
@@ -9,7 +20,7 @@ class QuadTree:
         self.objects = []
         self.quadrants = []
 
-    def split(self):
+    def split(self) -> None:
         next_level = self.level + 1
         sub_width = self.bounds["width"] / 2
         sub_height = self.bounds["height"] / 2
@@ -76,7 +87,7 @@ class QuadTree:
             )
         )
 
-    def getIndex(self, p_rect):
+    def getIndex(self, p_rect: Rect) -> List[int]:
         indexes = []
         bounds = self.bounds
 
@@ -102,7 +113,7 @@ class QuadTree:
 
         return indexes
 
-    def insert(self, p_rect):
+    def insert(self, p_rect: Rect) -> None:
         if self.quadrants:
             indexes = self.getIndex(p_rect)
 
@@ -127,7 +138,7 @@ class QuadTree:
 
         self.objects = []
 
-    def retrieve(self, p_rect):
+    def retrieve(self, p_rect: Rect) -> List[Rect]:
         indexes = self.getIndex(p_rect)
         return_objects = list(self.objects)
 
