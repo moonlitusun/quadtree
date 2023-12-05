@@ -37,4 +37,6 @@ handler_add_object()
 handler_add_object()
 handler_add_object()
 handler_add_object()
+
+my_tree.retrieve({'x': 442.67247944659135, 'y': 11.251336922147196, 'width': 6, 'height': 10})
 # print(my_tree.max_levels, rand_min_max(10, 20))
